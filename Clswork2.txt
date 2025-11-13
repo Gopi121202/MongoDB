@@ -1,1 +1,20 @@
-heloo 
+use schoolLibrary
+already on db schoolLibrary
+db.bookcollection.insert({title:"Introduction to Science",Author:"Dr.Smith",Available:"True"})
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6915862ec1882f85386b6fe8')
+  }
+}
+show collections
+bookcollection
+db.bookcollection.insert({title:"Introduction to Computer Science",Author:"Dr.Ann",Available:"True"})
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6915862ec1882f85386b6fe8')
+  }
+}
+db.bookcollection.drop()
+db.dropDatabase()
