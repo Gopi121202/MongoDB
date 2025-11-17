@@ -1,0 +1,4 @@
+use EventTracker
+db.UpcomingEvent.insertOne({name:"Music Fest",date:Date(),isFreeEntry:false,ticketPrice:299.99,performers:["DJ Max","Live Band"],location:[{city:"Chennai",venue:"Beach"}],specialCode:null})
+db.UpcomingEvent.find()
+show collections
