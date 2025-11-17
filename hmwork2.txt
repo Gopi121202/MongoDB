@@ -1,0 +1,8 @@
+use SchoolLibrary
+switched to db SchoolLibrary
+db.Books.insertOne([
+    { title: "Introduction to Science", author:"Dr.Smith", available: true}])
+
+db.Books.find()
+
+db.dropDatabase()
