@@ -1,0 +1,66 @@
+use machinetest
+switched to db machinetest
+db.Employees.insertMany([
+    { id:1,name: "Raju", department: "Sales", leave: 1 },
+    { id:2,name: "Sangeetha", department: "Sales", leave: 3  },
+    { id:3,name: "Vinay", department: "Operations", leave: 8 },
+    { id:4,name: "Abey", department: "Packing", leave: 2 },
+    { id:5,name: "thomas", department: "Packing", leave: 1 },
+    { id:6,name: "Muneer", department: "Operations", leave: 7 },
+    { id:7,name: "Aparna", department: "Sales", leave: 3 },
+    { id:8,name: "Abid", department: "Operations", leave: 9 },
+    { id:9,name: "Fathima", department: "Sales", leave: 11 },
+    { id:10,name: "Varghese", department: "Operations", leave: 14 }
+]);
+
+db.Exam.insertMany([
+    { id:1,Employee_id:2,exam_status:"Pass"},
+    { id:2,Employee_id:5,exam_status:"Fail"},
+    { id:3,Employee_id:1,exam_status:"Fail"},
+    { id:4,Employee_id:8,exam_status:"Pass"},
+    { id:5,Employee_id:3,exam_status:"Pass"},
+    { id:6,Employee_id:1,exam_status:"Pass"},
+    { id:7,Employee_id:6,exam_status:"Fail"},
+    { id:8,Employee_id:9,exam_status:"Pass"},
+    { id:9,Employee_id:10,exam_status:"Pass"}
+]);
+
+db.Employees.find({$and:[{"leave":{$gt:5}},{"department":"Sales"}]})
+
+db.Employees.aggregate([
+  { $match: 
+  { department: "Operations" } },
+  {$count:"operations_employee"}
+])
+
+db.Employees.aggregate([
+  { $group: 
+  { _id: "$department", 
+  EmployeeCount: { $sum: 1 } } }
+])
+
+db.Employees.aggregate([
+    {$group:{
+        _id:"$department",
+        totalLeaves:{$sum:"$leave"}}},
+        {$match:{totalLeaves:{$gt:10}}}])
+
+db.Employees.aggregate([
+  { $lookup: {
+      from: "Exam",
+      localField: "id",
+      foreignField: "Employee_id",
+      as: "exam"}},
+  { $unwind: "$exam" },
+  { $match: { "exam.exam_status": "Pass" } },
+  { $project: { _id: 0, name: 1 } }
+])
+
+db.Employees.aggregate([
+    {$lookup: 
+    {from: "Exam",
+    localField: "id",
+    foreignField: "Employee_id",
+    as: "examInfo"}},
+    { $match: { examInfo: { $eq: [] } } }, 
+    { $project: { _id: 0, name: 1 } }])

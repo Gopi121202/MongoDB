@@ -1,0 +1,14 @@
+use mashupdb
+switched to db mashupdb
+db.students.insertMany([
+    { name: "Sarah Johnson", age: 20, mark: 23, email: "sarah.johnson@university.com" },
+    { name: "Michael Chen", age: 19, mark: 24, email: "michael.chen@university.com" },
+    { name: "Emily Davis", age: 21, mark: 22, email: "emily.davis@university.com" },
+    { name: "James Wilson", age: 22, mark: 22, email: "james.wilson@university.com" },
+    { name: "Olivia Brown", age: 20, mark:20, email: "olivia.brown@university.com" },
+    { name: "Liam Taylor", age: 23, mark: 24, email: "liam.taylor@university.com" },
+    { name: "Sophia Lee", age: 19, mark: 19, email: "sophia.lee@university.com" },
+    { name: "Noah Martinez", age: 21, mark: 25, email: "noah.martinez@university.com" },
+    { name: "Ava Kim", age: 20, mark:18 , email: "ava.kim@university.com" },
+    { name: "Ethan Patel", age: 22, mark: 25, email: "ethan.patel@university.com" }
+]);
